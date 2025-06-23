@@ -82,4 +82,4 @@ for user in users:
      else:
         print("no logon".format(display_name,upn))
         
-# to be continued        
+# to be continued
