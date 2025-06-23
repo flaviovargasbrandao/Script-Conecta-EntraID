@@ -17,7 +17,7 @@ cipher = Fernet(key)
 
 #read the cypher key from the .env file
 
-with open ('.env.enc', 'rb') as file:
+with open ('.env.encrypted', 'rb') as file:
     encrypted_data = file.read()
 
 #decrypt the data
