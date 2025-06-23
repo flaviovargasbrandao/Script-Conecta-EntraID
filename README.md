@@ -1,10 +1,11 @@
-# EntraID automation repo! #
+# EntraID Automation Repo! #
 
-## by this repository I will guiding my way through entraID and do following actions
+## In this repository, I’ll be documenting my journey with EntraID while implementing the following tasks: #
 
-1 - Remove users from tenant block more than X numbers of days
-2 - Fork the repository and do something with Microsoft TODO and Jira using API OR autogui
+Remove users from the tenant who have been blocked for more than X days.
 
-The EntraID tenant Im using is a dev license with limited resources but just enought for get the job done.
+Fork the repository and integrate it with Microsoft To Do and Jira using either their APIs or AutoGUI.
 
-Let's see if I can get this as far as I planned!
+The EntraID tenant I’m using is a developer license with limited resources — but just enough to get the job done.
+
+Let’s see how far I can take this!
