@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import requests
+import datetime
 from msal import ConfidentialClientApplication
 import sys
 
@@ -43,10 +44,12 @@ if "access_token" not in result:
             print ("{}: {}".format(k,v)) 
             exit(1)
 print ("connectio sucessful on EntraID")
+print ("Scopes conceditos no token")
+print (result.get("scope", "N/A"))
 
 url = 'https://graph.microsoft.com/v1.0/users?$filter=accountEnabled eq false&$select=displayName,userPrincipalName,accountEnabled,signInActivity&$top=999'
 
-headers = {'Autorization': 'Bearer {}'.format(result['access-token'])}
+headers = {'Authorization': 'Bearer {}'.format(result['access_token'])}
 response = requests.get(url, headers=headers)
 
 
@@ -55,7 +58,8 @@ url = 'https://graph.microsoft.com/v1.0/users?$top=1'
 headers = {
         'Authorization': 'Bearer {}'.format(result['access_token'])}
 if response.status_code !=200:
-    print ("Fail at API call: {}".format(response.status_code, response.text)).exit(1)
+    print ("Fail at API call: {}".format(response.status_code, response.text))
+    exit(1)
 
 print ("users diabled for more than {} days".format(inactive_days))    
 
@@ -63,6 +67,26 @@ print ("users diabled for more than {} days".format(inactive_days))
 
 data = response.json
 users = data.get('value',[])
+today = datetime.timedelta.now (datetime.UTC)
+limit = datetime.timedelta(days=inactive_days)
+
+for user in users:
+     display_name - user,get ("displayName", "No Name")
+     upn = user.get ("userPrincipalName", "No UPN")
+     last_signin = user.get ("singInActivity", {}).get("LastSingInDateTime")
+
+     if last_signin:
+          data_login = datetime.datetime.fromisoformat(last_signin.replace("Z", "+00:00"))
+          if today - data_login > limit:
+               print ("Ultimo login em {}".format(display_name, upn))
+     else:
+        print("no logon".format(display_name,upn))
+        
+                  
+
+
+
+
 
 
  #response = requests.get(url, headers=headers)
