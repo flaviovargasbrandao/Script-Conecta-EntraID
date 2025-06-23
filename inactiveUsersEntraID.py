@@ -82,22 +82,4 @@ for user in users:
      else:
         print("no logon".format(display_name,upn))
         
-                  
-
-
-
-
-
-
- #response = requests.get(url, headers=headers)
-
-#if response.status_code == 200:
-#        print("API Call succeed!")
-#else:
-#        print("Fail at API call: {} - {}".format(response.status_code, response.text))
-
-#else:
- #   print("Authentication failed!")
-  #  print("Details:")
-   # for k, v in result.items():
-    #    print("{}: {}".format(k, v))
+# to be continued        
