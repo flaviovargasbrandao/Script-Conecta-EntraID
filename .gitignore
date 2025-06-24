@@ -2,3 +2,5 @@ Add-Content -Path .gitignore -Value "*.env"
 *.env
 *.log
 *.txt
+*.encrypted
+*.decrypted

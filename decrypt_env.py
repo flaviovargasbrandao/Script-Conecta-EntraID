@@ -24,6 +24,6 @@ with open ('.env.encrypted', 'rb') as file:
 decrypted_data = cipher.decrypt(encrypted_data)
 
 #Save the decrypted data to a new file
-with open('.nv.decrypted', 'wb') as file:
+with open('.env.decrypted', 'wb') as file:
     file.write(decrypted_data)
 print ("Decrypted .env file created")

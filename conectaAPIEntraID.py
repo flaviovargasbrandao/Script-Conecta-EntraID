@@ -4,7 +4,7 @@ import requests
 from msal import ConfidentialClientApplication
 
 # Carregar variáveis do .env
-load_dotenv()
+load_dotenv('.env.decrypted')
 
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
