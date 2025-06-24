@@ -7,10 +7,10 @@ import sys
 
 # Carregar variáveis do .env
 
-load_dotenv(".env") #chaves de acesso
+load_dotenv(".env.decrypted") #chaves de acesso
 load_dotenv("parametros.env") #paramtros adicionais
 
-#leitura das chaves de acesso
+# leitura das chaves de acesso
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 TENANT_ID = os.getenv('TENANT_ID')
@@ -47,7 +47,7 @@ print ("connectio sucessful on EntraID")
 print ("Scopes conceditos no token")
 print (result.get("scope", "N/A"))
 
-url = 'https://graph.microsoft.com/v1.0/users?$filter=accountEnabled eq false&$select=displayName,userPrincipalName,accountEnabled,signInActivity&$top=999'
+url = 'https://graph.microsoft.com/v1.0/users?$filter=accountEnabled eq false&$select=displayName,userPrincipalName,accountEnabled,signInActivity &$top=999'
 
 headers = {'Authorization': 'Bearer {}'.format(result['access_token'])}
 response = requests.get(url, headers=headers)
