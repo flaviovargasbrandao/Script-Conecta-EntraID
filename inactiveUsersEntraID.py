@@ -1,16 +1,41 @@
-import os
+# This script checks for inactive users in Microsoft Entra ID (Azure AD) based on the last sign-in activity.
+# It retrieves users who are disabled and checks their last sign-in date against a specified threshold of
+# inactivity days. If the last sign-in date is older than the threshold, it prints the user's display name and UPN.
+# If the last sign-in date is not available, it indicates that the user has never signed
+
+# by Flavio Brandão
+
+#uses the following libraries:
+# - os: to access environment variables
+# - dotenv: to load environment variables from a .env file 
+# - requests: to make HTTP requests to the Microsoft Graph API
+# - datetime: to handle date and time operations
+# - msal: to handle authentication with Microsoft Entra ID importing confidential client application
+# which stands for Microsoft Authentication Library
+# - sys: to handle system-specific parameters and functions
+import os   
 from dotenv import load_dotenv
 import requests
 import datetime
 from msal import ConfidentialClientApplication
 import sys
 
-# Carregar variáveis do .env
+# load environment variables from .env files
+# .env.decrypted contains the access keys
+# parametros.env contains additional parameters
+# the .env.decrypted file should be created using the encrypt_env.py script
 
-load_dotenv(".env.decrypted") #chaves de acesso
-load_dotenv("parametros.env") #paramtros adicionais
+# load_dotenv(".env") reads the decrypted env file
+# the env file constains
+# CLIENT_ID, CLIENT_SECRET, TENANT_ID, DIAS_INATIVIDADE
+# DIAS_INATIVIDADE is the number of days of inactivity to filter users
 
-# leitura das chaves de acesso
+load_dotenv(".env.decrypted") #decrypted env file with access keys
+load_dotenv("parametros.env") #parameters file with additional parameters
+
+# access keys from the env decrypted file
+# using os.getenv with the key name passing the key name as a string
+# CLIENT_ID, CLIENT_SECRET, TENANT_ID, DIAS_INATIVIDADE
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 TENANT_ID = os.getenv('TENANT_ID')
